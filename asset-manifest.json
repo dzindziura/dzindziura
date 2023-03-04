@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dzindziura.github.io/static/css/main.fe7c3a0f.css",
+    "main.js": "/dzindziura.github.io/static/js/main.8e5fa176.js",
+    "index.html": "/dzindziura.github.io/index.html",
+    "main.fe7c3a0f.css.map": "/dzindziura.github.io/static/css/main.fe7c3a0f.css.map",
+    "main.8e5fa176.js.map": "/dzindziura.github.io/static/js/main.8e5fa176.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe7c3a0f.css",
+    "static/js/main.8e5fa176.js"
+  ]
+}
