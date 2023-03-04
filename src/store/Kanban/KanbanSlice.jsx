@@ -30,7 +30,6 @@ const cardsSlice = createSlice({
     },
     allCardsRecieved: (state, { payload }) => {
       state.loading = "idle";
-      console.log(state.allCards);
       state.allCards = payload.cards.results;
       state.allBoards = payload.boards.results;
       const result = groupCards(payload.boards.results, payload.cards.results);
@@ -49,14 +48,31 @@ const cardsSlice = createSlice({
         (item) => item.uuid !== payload
       );
       const result = groupCards(state.allBoards, state.allCards);
+
+      state.data = result;
+    },
+    addNewCard: (state, { payload }) => {
+      state.allCards.push(payload);
+      const result = groupCards(state.allBoards, state.allCards);
+      state.data = result;
+    },
+    addNewBoards: (state, { payload }) => {
+      state.allBoards.push(payload);
+      const result = groupCards(state.allBoards, state.allCards);
       state.data = result;
     },
   },
   extraReducers: (builder) => {},
 });
 
-export const { allCardsLoading, allCardsRecieved, deleteCards, deleteBoards } =
-  cardsSlice.actions;
+export const {
+  allCardsLoading,
+  allCardsRecieved,
+  deleteCards,
+  deleteBoards,
+  addNewCard,
+  addNewBoards,
+} = cardsSlice.actions;
 
 export const getAllData = (state) => state.cards.data;
 export const getLoading = (state) => state.cards.loading;

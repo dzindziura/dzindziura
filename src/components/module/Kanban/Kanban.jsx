@@ -11,6 +11,7 @@ import {
   getLoading,
   deleteCards,
   deleteBoards,
+  addNewBoards,
 } from "../../../store/Kanban/KanbanSlice";
 import {
   GETCARDS,
@@ -104,12 +105,12 @@ const Kanban = () => {
   const deleteBorad = (id) => {
     dispatch(deleteBoards(id));
 
-    axios.delete(DELETEBOARD + id).then((res) => console.log(res));
+    axios.delete(DELETEBOARD + id);
   };
   const deleteCard = (id) => {
     dispatch(deleteCards(id));
 
-    axios.delete(DELETECARD + id).then((res) => console.log(res));
+    axios.delete(DELETECARD + id);
   };
 
   const addNewBoard = () => {
@@ -117,24 +118,22 @@ const Kanban = () => {
       Title: "New Board",
       uuid: uuidv4(),
     };
-    axios.post(CREATEBOARDS, data).then(() => {
-      setColumns({
-        ...columns,
-        [data.uuid]: {
-          name: data.Title,
-          items: [],
-        },
-      });
+    axios.post(CREATEBOARDS, data).then((response) => {
+      const result = {
+        id: response.data[0].insertId,
+        Title: data.Title,
+        uuid: data.uuid,
+      };
+      dispatch(addNewBoards(result));
     });
   };
 
   const changeNameBoard = () => {
     setOpen(true);
   };
+
   const setNewNameBoard = (name, id) => {
-    axios.post(UPDATETITLEBOARD, { name, id }).then((res) => {
-      console.log(res);
-    });
+    axios.post(UPDATETITLEBOARD, { name, id });
   };
 
   if (apiStatus !== "pending" && columns !== null) {
