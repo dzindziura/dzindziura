@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/dzindziura/static/css/main.c75afd81.css",
-    "main.js": "/dzindziura/static/js/main.c5668c75.js",
+    "main.js": "/dzindziura/static/js/main.841f11a2.js",
     "index.html": "/dzindziura/index.html",
     "main.c75afd81.css.map": "/dzindziura/static/css/main.c75afd81.css.map",
-    "main.c5668c75.js.map": "/dzindziura/static/js/main.c5668c75.js.map"
+    "main.841f11a2.js.map": "/dzindziura/static/js/main.841f11a2.js.map"
   },
   "entrypoints": [
     "static/css/main.c75afd81.css",
-    "static/js/main.c5668c75.js"
+    "static/js/main.841f11a2.js"
   ]
 }
