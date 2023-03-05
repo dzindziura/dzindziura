@@ -20,7 +20,7 @@ const Element = ({ id }) => {
   const addItem = (e) => {
     e.preventDefault();
     setActive(true);
-    const res = { Task: text, board_id: id, cards_id: uuidv4(), position: 100 };
+    const res = { Task: text, board_id: id, id: uuidv4(), position: 100 };
     dispatch(addNewCard(res))
 
     axios.post(ADDCARDS, res);

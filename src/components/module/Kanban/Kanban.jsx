@@ -76,10 +76,9 @@ const Kanban = () => {
         },
       });
       const updCards = {
-        id: result.draggableId,
-        cards_id: removed.cards_id,
+        id: removed.id,
         board_id: destination.droppableId,
-        position: destItems.map((item) => item.cards_id),
+        position: destItems.map((item) => item.id),
       };
       axios.post(UPDATECARD, updCards);
     } else {
@@ -97,9 +96,8 @@ const Kanban = () => {
       });
 
       const updCards = {
-        id: result.draggableId,
-        cards_id: removed.cards_id,
-        position: copiedItems.map((item) => item.cards_id),
+        id: removed.id,
+        position: copiedItems.map((item) => item.id),
       };
       axios.post(UPDATECARD, updCards);
     }
