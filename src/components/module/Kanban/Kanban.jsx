@@ -83,7 +83,22 @@ const Kanban = () => {
         board_id: destination.droppableId,
         position: destItems.map((item) => item.id),
       };
+      const items = {
+        ...columns,
+        [source.droppableId]: {
+          ...sourceColumn,
+          items: sourceItems,
+        },
+        [destination.droppableId]: {
+          ...destColumn,
+          items: destItems,
+        },
+      }
+      // console.log(items)
+      dispatch(dragEnd(items));
+
       axios.post(UPDATECARD, updCards);
+
     } else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];
@@ -97,14 +112,22 @@ const Kanban = () => {
           items: copiedItems,
         },
       });
-
+      const items = {
+        ...columns,
+        [source.droppableId]: {
+          ...column,
+          items: copiedItems,
+        },
+      }
       const updCards = {
         id: removed.id,
         position: copiedItems.map((item) => item.id),
       };
+      dispatch(dragEnd(items));
+
       axios.post(UPDATECARD, updCards);
     }
-    dispatch(dragEnd(columns));
+    console.log(result);
   };
   const deleteBorad = (id) => {
     dispatch(deleteBoards(id));

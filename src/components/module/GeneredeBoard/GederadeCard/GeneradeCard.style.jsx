@@ -22,3 +22,6 @@ export const TaskInformation = styled.div`
     color: #7d7d7d;
   }
 `;
+export const CardName = styled.div`
+    padding: 10px 0px;
+`

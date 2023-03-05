@@ -1,6 +1,6 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { TaskInformation } from "./GeneradeBoard.style";
+import { TaskInformation, CardName } from "./GeneradeCard.style";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import moment from "moment";
 import { useState, useRef } from "react";
@@ -30,7 +30,7 @@ const GeneradeCard = ({ item, index, deleteCard, updateCard }) => {
       updateCard(id, taskRef.current.textContent);
       const newDiff = moment.duration(now.diff(new Date()));
       formattedDiff = newDiff.humanize();
-      setNewDiff(formattedDiff + "ago");
+      setNewDiff(formattedDiff + " ago");
     }
   };
 
@@ -44,14 +44,14 @@ const GeneradeCard = ({ item, index, deleteCard, updateCard }) => {
         >
           <TaskInformation>
             <div>
-              <div
+              <CardName
                 contentEditable={true}
                 onBlur={() => handleBlur(item.id)}
                 suppressContentEditableWarning={true}
                 ref={taskRef}
               >
                 {item.Task}
-              </div>
+              </CardName>
               <p style={{ fontSize: 10 }}>
                 {newDiff ? newDiff : formattedDiff + " ago"}
               </p>
