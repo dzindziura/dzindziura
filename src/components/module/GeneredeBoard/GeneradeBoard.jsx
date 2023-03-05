@@ -1,11 +1,13 @@
 import Element from "../Element/index";
 import GeneradeCard from "./GederadeCard/GeneradeCard";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { Droppable } from "react-beautiful-dnd";
 import { TaskList } from "../Kanban/Kabban.style";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Input from "@mui/joy/Input";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 export const GederadeBoard = ({
   columns,
@@ -14,6 +16,8 @@ export const GederadeBoard = ({
   deleteCard,
   deleteBorad,
   setNewNameBoard,
+  updateCard,
+  sortBy,
 }) => {
   const setNewTitle = (event, columnId) => {
     if (event.key === "Enter") {
@@ -42,12 +46,24 @@ export const GederadeBoard = ({
                     <DeleteOutlineIcon />
                   </button>
                 </div>
+                <div style={{ display: "flex" }}>
+                  <p>Sort by</p>
+                  <button onClick={() => sortBy("asc", columnId)}>
+                    <ArrowUpwardIcon />
+                  </button>
+                  <button onClick={() => sortBy("desc", columnId)}>
+                    <ArrowDownwardIcon />
+                  </button>
+                  <button onClick={() => sortBy("date", columnId)}>Date</button>
+                </div>
+
                 {column.items.map((item, index) => (
                   <GeneradeCard
                     key={index}
                     item={item}
                     index={index}
                     deleteCard={deleteCard}
+                    updateCard={updateCard}
                   />
                 ))}
                 {provided.placeholder}
@@ -65,7 +81,9 @@ export const GederadeBoard = ({
         ""
       ) : (
         <Box>
-          <Button onClick={addNewBoard}  variant="contained">Add new board</Button>
+          <Button onClick={addNewBoard} variant="contained">
+            Add new board
+          </Button>
         </Box>
       )}
     </>

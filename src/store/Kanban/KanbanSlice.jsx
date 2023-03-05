@@ -61,6 +61,30 @@ const cardsSlice = createSlice({
       const result = groupCards(state.allBoards, state.allCards);
       state.data = result;
     },
+    sort: (state, {payload}) => {
+      switch (payload.value) {
+        case 'date':
+          state.data[payload.id].items.sort((a, b) => {
+            return new Date(b.updated_at) - new Date(a.updated_at);
+          });
+          break;
+        case 'asc':
+          state.data[payload.id].items.sort((a, b) => {
+            return a.Task.localeCompare(b.Task);
+          });
+          break
+        case 'desc':
+          state.data[payload.id].items.sort((a, b) => {
+            return b.Task.localeCompare(a.Task);
+          });
+          break
+        default:
+          break;
+      }
+    },
+    dragEnd: (state, {payload}) => {
+      state.data = payload;
+    }
   },
   extraReducers: (builder) => {},
 });
@@ -72,6 +96,8 @@ export const {
   deleteBoards,
   addNewCard,
   addNewBoards,
+  sort,
+  dragEnd
 } = cardsSlice.actions;
 
 export const getAllData = (state) => state.cards.data;

@@ -6,3 +6,4 @@ export const ADDCARDS = `${process.env.REACT_APP_API}/addCards`;
 export const DELETECARD = `${process.env.REACT_APP_API}/deleteCard/`;
 export const DELETEBOARD = `${process.env.REACT_APP_API}/deleteBoard/`;
 export const UPDATETITLEBOARD = `${process.env.REACT_APP_API}/updateTitleBoard/`;
+export const UPDATECARDTITLE = `${process.env.REACT_APP_API}/updateTitleCard/`;

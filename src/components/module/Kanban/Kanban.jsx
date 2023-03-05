@@ -12,6 +12,8 @@ import {
   deleteCards,
   deleteBoards,
   addNewBoards,
+  sort,
+  dragEnd,
 } from "../../../store/Kanban/KanbanSlice";
 import {
   GETCARDS,
@@ -21,6 +23,7 @@ import {
   DELETECARD,
   DELETEBOARD,
   UPDATETITLEBOARD,
+  UPDATECARDTITLE,
 } from "../../../constants/constants";
 import { GederadeBoard } from "../GeneredeBoard/GeneradeBoard";
 
@@ -101,6 +104,7 @@ const Kanban = () => {
       };
       axios.post(UPDATECARD, updCards);
     }
+    dispatch(dragEnd(columns));
   };
   const deleteBorad = (id) => {
     dispatch(deleteBoards(id));
@@ -130,7 +134,12 @@ const Kanban = () => {
   const setNewNameBoard = (name, id) => {
     axios.post(UPDATETITLEBOARD, { name, id });
   };
-
+  const updateCard = (id, name) => {
+    axios.post(UPDATECARDTITLE, { id, name });
+  };
+  const sortBy = (value, columnId) => {
+    dispatch(sort({ id: columnId, value: value }));
+  };
   if (apiStatus !== "pending" && columns !== null) {
     return (
       <DragDropContext
@@ -148,6 +157,8 @@ const Kanban = () => {
               deleteCard={deleteCard}
               deleteBorad={deleteBorad}
               setNewNameBoard={setNewNameBoard}
+              updateCard={updateCard}
+              sortBy={sortBy}
             />
           </TaskColumnStyles>
         </Container>
