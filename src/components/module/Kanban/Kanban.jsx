@@ -77,8 +77,9 @@ const Kanban = () => {
       });
       const updCards = {
         id: result.draggableId,
+        cards_id: removed.cards_id,
         board_id: destination.droppableId,
-        position: destItems.map((item) => item.id),
+        position: destItems.map((item) => item.cards_id),
       };
       axios.post(UPDATECARD, updCards);
     } else {
@@ -97,7 +98,8 @@ const Kanban = () => {
 
       const updCards = {
         id: result.draggableId,
-        position: copiedItems.map((item) => item.id),
+        cards_id: removed.cards_id,
+        position: copiedItems.map((item) => item.cards_id),
       };
       axios.post(UPDATECARD, updCards);
     }
@@ -118,14 +120,9 @@ const Kanban = () => {
       Title: "New Board",
       uuid: uuidv4(),
     };
-    axios.post(CREATEBOARDS, data).then((response) => {
-      const result = {
-        id: response.data[0].insertId,
-        Title: data.Title,
-        uuid: data.uuid,
-      };
-      dispatch(addNewBoards(result));
-    });
+    dispatch(addNewBoards(data));
+
+    axios.post(CREATEBOARDS, data);
   };
 
   const changeNameBoard = () => {

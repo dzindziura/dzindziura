@@ -1,6 +1,6 @@
 import Element from "../Element/index";
 import GeneradeCard from "./GederadeCard/GeneradeCard";
-import Button from "@mui/joy/Button";
+import Button from '@mui/material/Button';
 import Box from "@mui/material/Box";
 import { Droppable } from "react-beautiful-dnd";
 import { TaskList } from "../Kanban/Kabban.style";
@@ -65,7 +65,7 @@ export const GederadeBoard = ({
         ""
       ) : (
         <Box>
-          <Button onClick={addNewBoard}>Add new board</Button>
+          <Button onClick={addNewBoard}  variant="contained">Add new board</Button>
         </Box>
       )}
     </>
